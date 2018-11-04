@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue入门</title>
+<script src="./vue.min.js"></script>
+</head>
+<body>
+<div id="root">
+<input v-model:value="firstName"/>
+<input v-model:value="lastName"/>
+<div>
+{{firstName}}{{lastName}}
+</div>
+<div>
+{{count}}
+</div>
+<div>
+{{fullName}}
+</div>
+<ul>
+<li v-for="(item,index) of list" :key="index">{{item}}</li>
+</ul>
+
+<div>{{content}}</div>
+<div v-show="show">
+<button @click="handleClick">toogle</button>
+</div>
+</div>
+<script>
+	new Vue({
+		el : "#root",
+		data:{
+			content : "Hello World!",
+			firstName : '',
+			lastName : '',
+			count :  0,
+			show : true,
+			list : [1,2,3]
+		},
+		computed:{
+			fullName: function(){
+				return this.firstName+' '+this.lastName
+			}
+		},
+		watch: {
+			fullName: function(){
+				this.count++
+			}
+		},
+		methods:{
+		handleClick : function(){
+				this.show = !this.show;
+		}
+		}
+	})
+</script>
+
+</body>
+</html>
